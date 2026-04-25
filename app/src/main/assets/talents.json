@@ -1,0 +1,672 @@
+[
+  {
+    "name": "Tokino Sora",
+    "generation": "Gen 0",
+    "status": "Active",
+    "debutDate": "2017-09-07",
+    "oshiMark": "🐻",
+    "bio": "The first Hololive idol.",
+    "twitter": "@tokino_sora",
+    "youtubeChannelId": "UCp6oM6_k_c6Tf2u8f7f2UvA"
+  },
+  {
+    "name": "Robocosan",
+    "generation": "Gen 0",
+    "status": "Active",
+    "debutDate": "2018-03-04",
+    "oshiMark": "🤖",
+    "bio": "High-spec robot girl.",
+    "twitter": "@robocosan",
+    "youtubeChannelId": "UCD8HOxPs4Xvsm8H0MCXadBg"
+  },
+  {
+    "name": "Sakura Miko",
+    "generation": "Gen 0",
+    "status": "Active",
+    "debutDate": "2018-08-01",
+    "oshiMark": "🌸",
+    "bio": "Elite shrine maiden.",
+    "twitter": "@sakuramiko35",
+    "youtubeChannelId": "UC-hM6YJuNYV1AegL67H7uxw"
+  },
+  {
+    "name": "Hoshimachi Suisei",
+    "generation": "Gen 0",
+    "status": "Active",
+    "debutDate": "2018-03-22",
+    "oshiMark": "☄️",
+    "bio": "A diamond in the rough.",
+    "twitter": "@suisei_hosimati",
+    "youtubeChannelId": "UC5CwaMl1eIgY8h02uZw7u8A"
+  },
+  {
+    "name": "AZKi",
+    "generation": "Gen 0",
+    "status": "Active",
+    "debutDate": "2018-11-15",
+    "oshiMark": "⚒️",
+    "bio": "Virtual diva.",
+    "twitter": "@AZKi_VDiVA",
+    "youtubeChannelId": "UC0TXe_LYZ4scaW2XMyi5_kw"
+  },
+  {
+    "name": "Shirakami Fubuki",
+    "generation": "Gen 1 / Gamers",
+    "status": "Active",
+    "debutDate": "2018-06-01",
+    "oshiMark": "🌽",
+    "bio": "The white fox friend.",
+    "twitter": "@shirakamifubuki",
+    "youtubeChannelId": "UCdn5BQ06XqgXoAxIhbqw5Rg"
+  },
+  {
+    "name": "Natsuiro Matsuri",
+    "generation": "Gen 1",
+    "status": "Active",
+    "debutDate": "2018-06-01",
+    "oshiMark": "🏮",
+    "bio": "Cheerleader.",
+    "twitter": "@natsuiromatsuri",
+    "youtubeChannelId": "UCQ0UDLQCjY0rmuxCDE38FGg"
+  },
+  {
+    "name": "Akai Haato",
+    "generation": "Gen 1",
+    "status": "Active",
+    "debutDate": "2018-06-02",
+    "oshiMark": "❤️",
+    "bio": "Haachama!",
+    "twitter": "@akaihaato",
+    "youtubeChannelId": "UC1CfXB_kRs3C-zaeTG3oGyg"
+  },
+  {
+    "name": "Aki Rosenthal",
+    "generation": "Gen 1",
+    "status": "Active",
+    "debutDate": "2018-06-01",
+    "oshiMark": "🍎",
+    "bio": "Half-elf idol.",
+    "twitter": "@akirosenthal",
+    "youtubeChannelId": "UCFTLzh12_nrtzqBPsNYqenA"
+  },
+  {
+    "name": "Minato Aqua",
+    "generation": "Gen 2",
+    "status": "Alum",
+    "debutDate": "2018-08-08",
+    "oshiMark": "⚓",
+    "bio": "Gaming maid.",
+    "twitter": "@minatoaqua",
+    "youtubeChannelId": "UC1opHUrw8rvnsadT-iL7AgA"
+  },
+  {
+    "name": "Murasaki Shion",
+    "generation": "Gen 2",
+    "status": "Alum",
+    "debutDate": "2018-08-17",
+    "oshiMark": "🌙",
+    "bio": "Magician.",
+    "twitter": "@murasakishionch",
+    "youtubeChannelId": "UCXTpFs_3PqI41qX2d9tL2Rw"
+  },
+  {
+    "name": "Nakiri Ayame",
+    "generation": "Gen 2",
+    "status": "Active",
+    "debutDate": "2018-09-03",
+    "oshiMark": "😈",
+    "bio": "Oni girl.",
+    "twitter": "@nakiriayame",
+    "youtubeChannelId": "UC7fk0CB07ly8o6U40ICnnyw"
+  },
+  {
+    "name": "Yuzuki Choco",
+    "generation": "Gen 2",
+    "status": "Active",
+    "debutDate": "2018-09-04",
+    "oshiMark": "💋",
+    "bio": "Demon nurse.",
+    "twitter": "@yuzukichococh",
+    "youtubeChannelId": "UC1suqwovbL1kzsoaZgFZLKg"
+  },
+  {
+    "name": "Oozora Subaru",
+    "generation": "Gen 2",
+    "status": "Active",
+    "debutDate": "2018-09-16",
+    "oshiMark": "🚑",
+    "bio": "Duck-like manager.",
+    "twitter": "@oozorasubaru",
+    "youtubeChannelId": "UCvzGlP9oQwU--Y0r9id_jnA"
+  },
+  {
+    "name": "Usada Pekora",
+    "generation": "Gen 3",
+    "status": "Active",
+    "debutDate": "2019-07-17",
+    "oshiMark": "👯‍♀️",
+    "bio": "Chaos rabbit.",
+    "twitter": "@usadapekora",
+    "youtubeChannelId": "UC1DCedRgGHBdm81E1llLhOQ"
+  },
+  {
+    "name": "Uruha Rushia",
+    "generation": "Gen 3",
+    "status": "Alum",
+    "debutDate": "2019-07-18",
+    "oshiMark": "🦋",
+    "bio": "Necromancer.",
+    "twitter": "@uruharushia",
+    "youtubeChannelId": "UCl_gCSja6nUXWkdz8by6qUA"
+  },
+  {
+    "name": "Shiranui Flare",
+    "generation": "Gen 3",
+    "status": "Active",
+    "debutDate": "2019-08-07",
+    "oshiMark": "🔥",
+    "bio": "Half-elf.",
+    "twitter": "@shiranuiflare",
+    "youtubeChannelId": "UCvInRw6AUW_C24X88MCX7gA"
+  },
+  {
+    "name": "Shirogane Noel",
+    "generation": "Gen 3",
+    "status": "Active",
+    "debutDate": "2019-08-08",
+    "oshiMark": "⚔️",
+    "bio": "Knight.",
+    "twitter": "@shiroganenoel",
+    "youtubeChannelId": "UCdyqAaZDKHXg4zSColL4X_A"
+  },
+  {
+    "name": "Houshou Marine",
+    "generation": "Gen 3",
+    "status": "Active",
+    "debutDate": "2019-08-11",
+    "oshiMark": "🏴‍☠️",
+    "bio": "Pirate captain.",
+    "twitter": "@houshoumarine",
+    "youtubeChannelId": "UCCzUftO8KOVkV4wQG1vkUvg"
+  },
+  {
+    "name": "La+ Darknesss",
+    "generation": "HoloX",
+    "status": "Active",
+    "debutDate": "2021-11-26",
+    "oshiMark": "🛸",
+    "bio": "HoloX Leader.",
+    "twitter": "@laplusdarknesss",
+    "youtubeChannelId": "UCENwRMx5Yh42zWqzU188ZIg"
+  },
+  {
+    "name": "Takane Lui",
+    "generation": "HoloX",
+    "status": "Active",
+    "debutDate": "2021-11-27",
+    "oshiMark": "🥀",
+    "bio": "HoloX Executive.",
+    "twitter": "@takanelui",
+    "youtubeChannelId": "UCs9_O1tRPMQTHQ-NqksvC-A"
+  },
+  {
+    "name": "Hakui Koyori",
+    "generation": "HoloX",
+    "status": "Active",
+    "debutDate": "2021-11-28",
+    "oshiMark": "🧪",
+    "bio": "HoloX Scientist.",
+    "twitter": "@hakuikoyori",
+    "youtubeChannelId": "UC6eWCld0KwmyHFbQJX34vGg"
+  },
+  {
+    "name": "Sakamata Chloe",
+    "generation": "HoloX",
+    "status": "Alum",
+    "debutDate": "2021-11-29",
+    "oshiMark": "🎣",
+    "bio": "HoloX Cleaner.",
+    "twitter": "@sakamatachloe",
+    "youtubeChannelId": "UCvzGlP9oQwU--Y0r9id_jnA"
+  },
+  {
+    "name": "Kazama Iroha",
+    "generation": "HoloX",
+    "status": "Active",
+    "debutDate": "2021-11-30",
+    "oshiMark": "🍃",
+    "bio": "HoloX Samurai.",
+    "twitter": "@kazamairohach",
+    "youtubeChannelId": "UC_vMYWcDjmfdpH6r4TTn1MQ"
+  },
+  {
+    "name": "Mori Calliope",
+    "generation": "EN Myth",
+    "status": "Active",
+    "debutDate": "2020-09-12",
+    "oshiMark": "💀",
+    "bio": "Reaper rapper.",
+    "twitter": "@moricalliope",
+    "youtubeChannelId": "UCL_qhgtOy0dy1Agp8vkySQg"
+  },
+  {
+    "name": "Takanashi Kiara",
+    "generation": "EN Myth",
+    "status": "Active",
+    "debutDate": "2020-09-12",
+    "oshiMark": "🐔",
+    "bio": "Phoenix idol.",
+    "twitter": "@takanashikiara",
+    "youtubeChannelId": "UCHsx4Hqa-1ORjQTh9TYDhww"
+  },
+  {
+    "name": "Ninomae Ina'nis",
+    "generation": "EN Myth",
+    "status": "Active",
+    "debutDate": "2020-09-13",
+    "oshiMark": "🐙",
+    "bio": "Priestess.",
+    "twitter": "@ninomaeinanis",
+    "youtubeChannelId": "UCoSrY_IQQVpmIRZ9Xf-y93g"
+  },
+  {
+    "name": "Gawr Gura",
+    "generation": "EN Myth",
+    "status": "Alum",
+    "debutDate": "2020-09-13",
+    "oshiMark": "🔱",
+    "bio": "Shark girl.",
+    "twitter": "@gawrgura",
+    "youtubeChannelId": "UCoSrY_IQQVpmIRZ9Xf-y93g"
+  },
+  {
+    "name": "Watson Amelia",
+    "generation": "EN Myth",
+    "status": "Affiliate",
+    "debutDate": "2020-09-13",
+    "oshiMark": "🔎",
+    "bio": "Detective.",
+    "twitter": "@watsonameliaen",
+    "youtubeChannelId": "UCdn5BQ06XqgXoAxIhbqw5Rg"
+  },
+  {
+    "name": "IRyS",
+    "generation": "Project HOPE",
+    "status": "Active",
+    "debutDate": "2021-07-11",
+    "oshiMark": "💎",
+    "bio": "Nephilim.",
+    "twitter": "@irys_en",
+    "youtubeChannelId": "UC8rcEBzJSleTkf_-agPM20g"
+  },
+  {
+    "name": "Ceres Fauna",
+    "generation": "EN Promise",
+    "status": "Alum",
+    "debutDate": "2021-08-23",
+    "oshiMark": "🌿",
+    "bio": "Nature.",
+    "twitter": "@ceresfauna",
+    "youtubeChannelId": "UCO_aKKYxn4tvrqPjcTzZ6EQ"
+  },
+  {
+    "name": "Ouro Kronii",
+    "generation": "EN Promise",
+    "status": "Active",
+    "debutDate": "2021-08-23",
+    "oshiMark": "⏳",
+    "bio": "Time.",
+    "twitter": "@ourokronii",
+    "youtubeChannelId": "UCmbs8T6MWqUHP1tIQvSgKrg"
+  },
+  {
+    "name": "Nanashi Mumei",
+    "generation": "EN Promise",
+    "status": "Alum",
+    "debutDate": "2021-08-23",
+    "oshiMark": "🪶",
+    "bio": "Civilization.",
+    "twitter": "@nanashimumei_en",
+    "youtubeChannelId": "UC3n5uGu18FoCy23ggWWp8tA"
+  },
+  {
+    "name": "Hakos Baelz",
+    "generation": "EN Promise",
+    "status": "Active",
+    "debutDate": "2021-08-23",
+    "oshiMark": "🎲",
+    "bio": "Chaos.",
+    "twitter": "@hakosbaelz",
+    "youtubeChannelId": "UCgmPnx-EEeOrZSg5Tiw7ZRQ"
+  },
+  {
+    "name": "Tsukumo Sana",
+    "generation": "EN Council",
+    "status": "Alum",
+    "debutDate": "2021-08-23",
+    "oshiMark": "🪐",
+    "bio": "Space.",
+    "twitter": "@tsukumosana",
+    "youtubeChannelId": "UCsUj0dszADCGbF3gNrQEuSQ"
+  },
+  {
+    "name": "Shiori Novella",
+    "generation": "EN Advent",
+    "status": "Active",
+    "debutDate": "2023-07-30",
+    "oshiMark": "🔖",
+    "bio": "Archivist.",
+    "twitter": "@shiorinovella",
+    "youtubeChannelId": "UCgnfPPb9JI3e9A4cXHnWbyg"
+  },
+  {
+    "name": "Koseki Bijou",
+    "generation": "EN Advent",
+    "status": "Active",
+    "debutDate": "2023-07-30",
+    "oshiMark": "🗿",
+    "bio": "Jewel.",
+    "twitter": "@kosekibijou",
+    "youtubeChannelId": "UC9p_lqQ0FEDz327Vgf5JwqA"
+  },
+  {
+    "name": "Nerissa Ravencroft",
+    "generation": "EN Advent",
+    "status": "Active",
+    "debutDate": "2023-07-31",
+    "oshiMark": "🎼",
+    "bio": "Sound.",
+    "twitter": "@nerissa_en",
+    "youtubeChannelId": "UC_sFNM0z0MWm9A6WlKPuMMg"
+  },
+  {
+    "name": "Fuwawa Abyssgard",
+    "generation": "EN Advent (FUWAMOCO)",
+    "status": "Active",
+    "debutDate": "2023-07-31",
+    "oshiMark": "🐾",
+    "bio": "Fluffy.",
+    "twitter": "@fuwamoco_en",
+    "youtubeChannelId": "UCt9H_RpQzhxzlyBxFqrdHqA"
+  },
+  {
+    "name": "Mococo Abyssgard",
+    "generation": "EN Advent (FUWAMOCO)",
+    "status": "Active",
+    "debutDate": "2023-07-31",
+    "oshiMark": "🐾",
+    "bio": "Fuzzy.",
+    "twitter": "@fuwamoco_en",
+    "youtubeChannelId": "UCt9H_RpQzhxzlyBxFqrdHqA"
+  },
+  {
+    "name": "Elizabeth Rose Bloodflame",
+    "generation": "EN Justice",
+    "status": "Active",
+    "debutDate": "2024-06-21",
+    "oshiMark": "🌹",
+    "bio": "Leader.",
+    "twitter": "@ERBloodflame",
+    "youtubeChannelId": "UCW5uhrG1eCBYditmhL0Ykjw"
+  },
+  {
+    "name": "Gigi Murin",
+    "generation": "EN Justice",
+    "status": "Active",
+    "debutDate": "2024-06-21",
+    "oshiMark": "🧡",
+    "bio": "Chaser.",
+    "twitter": "@gigimurin",
+    "youtubeChannelId": "UCDHABijvPBnJm7F-KlNME3w"
+  },
+  {
+    "name": "Cecilia Immergreen",
+    "generation": "EN Justice",
+    "status": "Active",
+    "debutDate": "2024-06-22",
+    "oshiMark": "🎻",
+    "bio": "Automaton.",
+    "twitter": "@ceciliaimgreen",
+    "youtubeChannelId": "UCvN5h1ShZtc7nly3pezRayg"
+  },
+  {
+    "name": "Raora Panthera",
+    "generation": "EN Justice",
+    "status": "Active",
+    "debutDate": "2024-06-22",
+    "oshiMark": "🐆",
+    "bio": "Artist.",
+    "twitter": "@raorapanthera",
+    "youtubeChannelId": "UCl69AEx4MdqMZH7Jtsm7Tig"
+  },
+  {
+    "name": "Ayunda Risu",
+    "generation": "ID Gen 1",
+    "status": "Active",
+    "debutDate": "2020-04-10",
+    "oshiMark": "🐿️",
+    "bio": "Squirrel.",
+    "twitter": "@ayundarisu",
+    "youtubeChannelId": "UCOyYb1c43VlX9rc_lT6NKQw"
+  },
+  {
+    "name": "Moona Hoshinova",
+    "generation": "ID Gen 1",
+    "status": "Active",
+    "debutDate": "2020-04-11",
+    "oshiMark": "🌙",
+    "bio": "Moon goddess.",
+    "twitter": "@moonahoshinova",
+    "youtubeChannelId": "UCP0BspO_AMEe3aQqqpo89Dg"
+  },
+  {
+    "name": "Airani Iofifteen",
+    "generation": "ID Gen 1",
+    "status": "Active",
+    "debutDate": "2020-04-12",
+    "oshiMark": "🎨",
+    "bio": "Alien artist.",
+    "twitter": "@airaniiofifteen",
+    "youtubeChannelId": "UCAoy6rzhSf4ydcYjJw3WoVg"
+  },
+  {
+    "name": "Kureiji Ollie",
+    "generation": "ID Gen 2",
+    "status": "Active",
+    "debutDate": "2020-12-04",
+    "oshiMark": "🧟‍♀️",
+    "bio": "Zombie idol.",
+    "twitter": "@kureijiollie",
+    "youtubeChannelId": "UCYz_5n-uDuChHtLo7My1HnQ"
+  },
+  {
+    "name": "Anya Melfissa",
+    "generation": "ID Gen 2",
+    "status": "Active",
+    "debutDate": "2020-12-05",
+    "oshiMark": "🍂",
+    "bio": "Ancient kris.",
+    "twitter": "@anyamelfissa",
+    "youtubeChannelId": "UC727SQYUvx5pDDGQpTICNWg"
+  },
+  {
+    "name": "Pavolia Reine",
+    "generation": "ID Gen 2",
+    "status": "Active",
+    "debutDate": "2020-12-06",
+    "oshiMark": "🦚",
+    "bio": "Peafowl princess.",
+    "twitter": "@pavoliareine",
+    "youtubeChannelId": "UChgTyjG-pdNvxxhdsXfHQ5Q"
+  },
+  {
+    "name": "Vestia Zeta",
+    "generation": "ID Gen 3",
+    "status": "Active",
+    "debutDate": "2022-03-25",
+    "oshiMark": "📄",
+    "bio": "Agent.",
+    "twitter": "@vestiazeta",
+    "youtubeChannelId": "UCTvHWSfBZgtxE4sILOaurIQ"
+  },
+  {
+    "name": "Kaela Kovalskia",
+    "generation": "ID Gen 3",
+    "status": "Active",
+    "debutDate": "2022-03-26",
+    "oshiMark": "🔨",
+    "bio": "Blacksmith.",
+    "twitter": "@kaelakovalskia",
+    "youtubeChannelId": "UCZLZ8Jjx_RN2CXloOmgTHVg"
+  },
+  {
+    "name": "Kobo Kanaeru",
+    "generation": "ID Gen 3",
+    "status": "Active",
+    "debutDate": "2022-03-27",
+    "oshiMark": "☔",
+    "bio": "Shaman.",
+    "twitter": "@kobokanaeru",
+    "youtubeChannelId": "UCjLEmnpCNeisMxy134KPwWw"
+  },
+  {
+    "name": "Hiodoshi Ao",
+    "generation": "ReGLOSS",
+    "status": "Active",
+    "debutDate": "2023-09-09",
+    "oshiMark": "🖋️",
+    "bio": "Artist.",
+    "twitter": "@hiodoshiao",
+    "youtubeChannelId": "UCMGfV7TVTmHhEErVJg1oHBQ"
+  },
+  {
+    "name": "Otonose Kanade",
+    "generation": "ReGLOSS",
+    "status": "Active",
+    "debutDate": "2023-09-09",
+    "oshiMark": "🎹",
+    "bio": "Musician.",
+    "twitter": "@otonosekanade",
+    "youtubeChannelId": "UCWQtYtq9EOB4-I5P-3fh8lA"
+  },
+  {
+    "name": "Ichijou Ririka",
+    "generation": "ReGLOSS",
+    "status": "Active",
+    "debutDate": "2023-09-10",
+    "oshiMark": "🌟",
+    "bio": "Entrepreneur.",
+    "twitter": "@ichijouririka",
+    "youtubeChannelId": "UCtyWhCj3AqKh2dXctLkDtng"
+  },
+  {
+    "name": "Juufuutei Raden",
+    "generation": "ReGLOSS",
+    "status": "Active",
+    "debutDate": "2023-09-10",
+    "oshiMark": "🎭",
+    "bio": "Culture lover.",
+    "twitter": "@juufuuteiraden",
+    "youtubeChannelId": "UCdXAk5MpyLD8594lm_OvtGQ"
+  },
+  {
+    "name": "Todoroki Hajime",
+    "generation": "ReGLOSS",
+    "status": "Active",
+    "debutDate": "2023-09-10",
+    "oshiMark": "🐧",
+    "bio": "Rookie.",
+    "twitter": "@todorokihajime",
+    "youtubeChannelId": "UC1iA6_NT4mtAcIII6ygrvCw"
+  },
+  {
+    "name": "Isaki Riona",
+    "generation": "FLOW GLOW",
+    "status": "Active",
+    "debutDate": "2024-11-10",
+    "oshiMark": "🎼",
+    "bio": "Leader.",
+    "twitter": "@isakiriona",
+    "youtubeChannelId": "UClV8WfrY1l0JgC0kP9x2t8Q"
+  },
+  {
+    "name": "Koganei Niko",
+    "generation": "FLOW GLOW",
+    "status": "Active",
+    "debutDate": "2024-11-09",
+    "oshiMark": "💫",
+    "bio": "Idol.",
+    "twitter": "@koganeiniko",
+    "youtubeChannelId": "UC7MMNHR-kf9EN1rXiesMTMw"
+  },
+  {
+    "name": "Mizumiya Su",
+    "generation": "FLOW GLOW",
+    "status": "Active",
+    "debutDate": "2024-11-09",
+    "oshiMark": "💧",
+    "bio": "DEV_IS.",
+    "twitter": "@mizumiyasu",
+    "youtubeChannelId": "UCpFAeyYSv4-7R1rC91c6DuA"
+  },
+  {
+    "name": "Rindo Chihaya",
+    "generation": "FLOW GLOW",
+    "status": "Active",
+    "debutDate": "2024-11-09",
+    "oshiMark": "🍁",
+    "bio": "DEV_IS.",
+    "twitter": "@rindochihaya",
+    "youtubeChannelId": "UCWQtYt6A4rxGlrj6FXp2P1A"
+  },
+  {
+    "name": "Kikirara Vivi",
+    "generation": "FLOW GLOW",
+    "status": "Active",
+    "debutDate": "2024-11-10",
+    "oshiMark": "✨",
+    "bio": "DEV_IS.",
+    "twitter": "@kikiraravivi",
+    "youtubeChannelId": "UCJ1h0Sg5X0vY4QwWh6r7pRQ"
+  },
+  {
+    "name": "Izuki Michiru",
+    "generation": "holoAN",
+    "status": "Active",
+    "debutDate": "2025-10-15",
+    "oshiMark": "🌙",
+    "bio": "Announcer.",
+    "twitter": "@izukimichiru",
+    "youtubeChannelId": "UCp6oM6_k_c6Tf2u8f7f2UvA"
+  },
+  {
+    "name": "Yuujin A (A-chan)",
+    "generation": "Staff",
+    "status": "Alum",
+    "debutDate": "2017-09-07",
+    "oshiMark": "👓",
+    "bio": "Legendary Staff.",
+    "twitter": "@achan_uga",
+    "youtubeChannelId": "UCp6oM6_k_c6Tf2u8f7f2UvA"
+  },
+  {
+    "name": "Harusaki Nodoka",
+    "generation": "Staff",
+    "status": "Active",
+    "debutDate": "2022-04-01",
+    "oshiMark": "🍡",
+    "bio": "Staff.",
+    "twitter": "@harusakinodoka",
+    "youtubeChannelId": "UCp6oM6_k_c6Tf2u8f7f2UvA"
+  },
+  {
+    "name": "Omega Alpha",
+    "generation": "Staff",
+    "status": "Affiliate",
+    "debutDate": "2021-08-23",
+    "oshiMark": "希",
+    "bio": "EN Staff.",
+    "twitter": "@omegaalpha_en",
+    "youtubeChannelId": "UC1opHUrw8rvnsadT-iL7AgA"
+  }
+]
