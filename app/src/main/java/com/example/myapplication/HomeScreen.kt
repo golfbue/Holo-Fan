@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.alpha
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Home
@@ -50,13 +51,13 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
             item {
                 Column(modifier = Modifier.padding(16.dp).padding(top = 24.dp)) {
                     Text(
-                        "Hello, HoloFriend! 👋",
+                        strings.hello,
                         fontSize = 14.sp,
-                        color = TextLight,
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        "Discover what's Live",
+                        strings.discover,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = PrimaryBlue
@@ -126,20 +127,21 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         !titleLower.contains("reel")
                     }
 
-                    // Apply Search Filter
-                    val liveStreams = if (searchQuery.isBlank()) allLive else allLive.filter { 
+                    // Apply Search Filter and ensure Distinct by ID
+                    val liveStreams = (if (searchQuery.isBlank()) allLive else allLive.filter { 
                         it.title.contains(searchQuery, ignoreCase = true) || it.channel.name.contains(searchQuery, ignoreCase = true) 
-                    }
-                    val upcoming = if (searchQuery.isBlank()) allUpcoming else allUpcoming.filter { 
+                    }).distinctBy { it.id }
+                    
+                    val upcoming = (if (searchQuery.isBlank()) allUpcoming else allUpcoming.filter { 
                         it.title.contains(searchQuery, ignoreCase = true) || it.channel.name.contains(searchQuery, ignoreCase = true) 
-                    }
+                    }).distinctBy { it.channel.id } // Filter by Channel ID to prevent duplicate icons
                     
                     if (liveStreams.isNotEmpty()) {
                         // 2. Featured Live (Big Card)
                         item {
                             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(strings.liveNow, fontWeight = FontWeight.ExtraBold, color = TextDark, fontSize = 18.sp)
+                                    Text(strings.liveNow, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground, fontSize = 18.sp)
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(LiveRed))
                                 }
@@ -156,7 +158,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                                     Text(
                                         strings.otherLive, 
                                         fontWeight = FontWeight.ExtraBold, 
-                                        color = TextDark, 
+                                        color = MaterialTheme.colorScheme.onBackground, 
                                         fontSize = 18.sp,
                                         modifier = Modifier.padding(horizontal = 16.dp)
                                     )
@@ -180,9 +182,9 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         item {
                             Column {
                                 Text(
-                                    "Upcoming Highlights", 
+                                    if (LocalStrings.current == ThaiStrings) "ไฮไลท์สตรีมเร็วๆ นี้" else "Upcoming Highlights", 
                                     fontWeight = FontWeight.ExtraBold, 
-                                    color = TextDark, 
+                                    color = MaterialTheme.colorScheme.onBackground, 
                                     fontSize = 18.sp,
                                     modifier = Modifier.padding(horizontal = 16.dp)
                                 )
@@ -199,16 +201,41 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                             }
                         }
                     }
+
+                    // 5. Latest Updates (New Section from API)
+                    if (state.latestVideos.isNotEmpty()) {
+                        item {
+                            Column {
+                                Text(
+                                    strings.latestNews, 
+                                    fontWeight = FontWeight.ExtraBold, 
+                                    color = MaterialTheme.colorScheme.onBackground, 
+                                    fontSize = 18.sp,
+                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                )
+                                Spacer(modifier = Modifier.height(12.dp))
+                                androidx.compose.foundation.lazy.LazyRow(
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                                ) {
+                                    items(state.latestVideos.size) { index ->
+                                        LatestVideoCard(state.latestVideos[index])
+                                    }
+                                }
+                                Spacer(modifier = Modifier.height(24.dp))
+                            }
+                        }
+                    }
                 }
             }
 
-            // 5. News Section
+            // 6. News Section (Link)
             item {
                 Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(strings.latestNews, fontWeight = FontWeight.ExtraBold, color = TextDark, fontSize = 18.sp)
+                        Text(if (LocalStrings.current == ThaiStrings) "ข่าวสารอย่างเป็นทางการ" else "Official News", fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground, fontSize = 18.sp)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("📣", fontSize = 16.sp)
+                        Text("🌐", fontSize = 16.sp)
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     NewsBannerCard()
@@ -279,7 +306,7 @@ fun LiveStreamBigCard(video: HolodexVideo) {
                 }
             }
             Column(modifier = Modifier.padding(16.dp)) {
-                Text(video.title, fontWeight = FontWeight.Bold, color = TextDark, maxLines = 2, fontSize = 16.sp, lineHeight = 20.sp)
+                Text(video.title, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, maxLines = 2, fontSize = 16.sp, lineHeight = 20.sp)
             }
         }
     }
@@ -316,8 +343,39 @@ fun LiveStreamMiniCard(video: HolodexVideo) {
                 }
             }
             Column(modifier = Modifier.padding(10.dp)) {
-                Text(video.title, fontWeight = FontWeight.Bold, color = TextDark, maxLines = 1, fontSize = 13.sp)
-                Text(video.channel.name, color = TextLight, fontSize = 11.sp)
+                Text(video.title, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground, maxLines = 1, fontSize = 13.sp)
+                Text(video.channel.name, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f), fontSize = 11.sp)
+            }
+        }
+    }
+}
+
+@Composable
+fun LatestVideoCard(video: HolodexVideo) {
+    val context = LocalContext.current
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        modifier = Modifier
+            .width(200.dp)
+            .clickable {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=${video.id}"))
+                context.startActivity(intent)
+            }
+    ) {
+        Column {
+            Box(modifier = Modifier.height(110.dp).fillMaxWidth()) {
+                val thumbUrl = "https://img.youtube.com/vi/${video.id}/mqdefault.jpg"
+                coil.compose.AsyncImage(
+                    model = thumbUrl,
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = androidx.compose.ui.layout.ContentScale.Crop
+                )
+            }
+            Column(modifier = Modifier.padding(10.dp)) {
+                Text(video.title, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, maxLines = 1, fontSize = 12.sp)
+                Text(video.channel.name, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), fontSize = 10.sp)
             }
         }
     }
@@ -343,7 +401,7 @@ fun UpcomingHorizontalCard(video: HolodexVideo) {
                 modifier = Modifier.size(60.dp).clip(CircleShape)
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(video.channel.name, fontWeight = FontWeight.Bold, color = TextDark, fontSize = 12.sp, maxLines = 1)
+            Text(video.channel.name, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, fontSize = 12.sp, maxLines = 1)
             Text("Upcoming", color = PrimaryBlue, fontSize = 10.sp, fontWeight = FontWeight.SemiBold)
         }
     }
@@ -352,9 +410,10 @@ fun UpcomingHorizontalCard(video: HolodexVideo) {
 @Composable
 fun NewsBannerCard() {
     val context = LocalContext.current
+    val strings = LocalStrings.current
     Card(
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = PrimaryBlue),
+        shape = RoundedCornerShape(24.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -362,27 +421,65 @@ fun NewsBannerCard() {
                 context.startActivity(intent)
             }
     ) {
-        Row(
-            modifier = Modifier.padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier
+                .background(
+                    androidx.compose.ui.graphics.Brush.linearGradient(
+                        colors = listOf(PrimaryBlue, Color(0xFF00B0FF), Color(0xFF00E5FF))
+                    )
+                )
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text("Hololive News", color = Color.White.copy(alpha = 0.8f), fontSize = 12.sp)
-                Text("Official News & Updates", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(
-                    onClick = { 
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://hololivepro.com/news_en/"))
-                        context.startActivity(intent)
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp),
-                    modifier = Modifier.height(32.dp)
-                ) {
-                    Text("Read More", color = PrimaryBlue, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            // Decorative Icon in background
+            Text(
+                "🌐", 
+                fontSize = 120.sp, 
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .offset(x = 30.dp, y = 20.dp)
+                    .alpha(0.15f)
+            )
+            
+            Row(
+                modifier = Modifier.padding(24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        if (LocalStrings.current == ThaiStrings) "ข่าวสาร Hololive" else "Hololive News", 
+                        color = Color.White.copy(alpha = 0.9f), 
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        if (LocalStrings.current == ThaiStrings) "อัปเดตประกาศทางการล่าสุด" else "Official News & Updates", 
+                        color = Color.White, 
+                        fontWeight = FontWeight.ExtraBold, 
+                        fontSize = 22.sp,
+                        lineHeight = 28.sp
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(
+                        onClick = { 
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://hololivepro.com/news_en/"))
+                            context.startActivity(intent)
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                        shape = RoundedCornerShape(12.dp),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp),
+                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
+                        modifier = Modifier.height(40.dp)
+                    ) {
+                        Text(
+                            if (LocalStrings.current == ThaiStrings) "อ่านเพิ่มเติม" else "Read More", 
+                            color = PrimaryBlue, 
+                            fontSize = 14.sp, 
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
                 }
             }
-            Text("🌐", fontSize = 48.sp)
         }
     }
 }

@@ -20,7 +20,10 @@ data class HolodexChannel(
     val id: String,
     val name: String,
     val photo: String? = null,
-    val org: String? = null
+    val org: String? = null,
+    val suborg: String? = null,
+    val twitter: String? = null,
+    val english_name: String? = null
 )
 
 interface HolodexApi {
@@ -38,18 +41,33 @@ interface HolodexApi {
         @Query("limit") limit: Int = 50
     ): List<HolodexVideo>
 
+    @GET("channels")
+    suspend fun getChannels(
+        @Query("org") org: String = "Hololive",
+        @Query("type") type: String = "vtuber",
+        @Query("limit") limit: Int = 100
+    ): List<HolodexChannel>
+
     companion object {
         private const val BASE_URL = "https://holodex.net/api/v2/"
 
         fun create(apiKey: String? = null): HolodexApi {
+            val finalApiKey = if (apiKey.isNullOrBlank()) "78913e84-33bd-45d0-bf43-d872a6543ae8" else apiKey
             val client = okhttp3.OkHttpClient.Builder().apply {
-                if (!apiKey.isNullOrBlank()) {
-                    addInterceptor { chain ->
-                        val request = chain.request().newBuilder()
-                            .addHeader("X-APIKEY", apiKey)
-                            .build()
-                        chain.proceed(request)
-                    }
+                addInterceptor { chain ->
+                    val request = chain.request().newBuilder()
+                        .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                        .addHeader("Accept", "application/json, text/plain, */*")
+                        .addHeader("Accept-Language", "en-US,en;q=0.9")
+                        .addHeader("X-Requested-With", "XMLHttpRequest")
+                        .apply {
+                            if (!finalApiKey.isNullOrBlank()) {
+                                // Try different header name casing just in case
+                                addHeader("X-APIKEY", finalApiKey)
+                            }
+                        }
+                        .build()
+                    chain.proceed(request)
                 }
             }.build()
 

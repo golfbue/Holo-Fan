@@ -40,14 +40,15 @@ fun MerchStoreScreen() {
 
         // List
         LazyColumn(contentPadding = PaddingValues(16.dp)) {
-            item { MerchItemCard("Aqua Birthday Merch", "1 มี.ค. 2022", "15 มิ.ย. 2022") }
-            item { MerchItemCard("Hololive Summer Goods", "25 มิ.ย. 2022", "สินค้าพร้อมส่ง") }
+            item { MerchItemCard("Aqua Birthday Merch", "1 Mar 2022", "15 Jun 2022") }
+            item { MerchItemCard("Hololive Summer Goods", "25 Jun 2022", "Ready to ship") }
         }
     }
 }
 
 @Composable
 fun MerchItemCard(title: String, openDate: String, endDate: String) {
+    val strings = LocalStrings.current
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -58,8 +59,8 @@ fun MerchItemCard(title: String, openDate: String, endDate: String) {
             Spacer(modifier = Modifier.height(12.dp))
             Text(title, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface)
             Spacer(modifier = Modifier.height(4.dp))
-            Text("เปิดรับ: $openDate", fontSize = 14.sp, color = TextLight)
-            Text("ถึง: $endDate", fontSize = 14.sp, color = TextLight)
+            Text("${strings.openPeriod}: $openDate", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+            Text("${strings.until}: $endDate", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
         }
     }
 }

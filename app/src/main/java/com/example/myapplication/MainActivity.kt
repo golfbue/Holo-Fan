@@ -125,21 +125,15 @@ fun MainScreen() {
                             NavigationBarItem(
                                 icon = { Icon(Icons.Default.Person, contentDescription = strings.talents) },
                                 label = { Text(strings.talents) },
-                                selected = false,
-                                onClick = { 
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://hololive.hololivepro.com/en/talents"))
-                                    context.startActivity(intent)
-                                },
+                                selected = selectedTab == 2,
+                                onClick = { selectedTab = 2 },
                                 colors = NavigationBarItemDefaults.colors(indicatorColor = BackgroundLightBlue, selectedIconColor = PrimaryBlue, selectedTextColor = PrimaryBlue)
                             )
                             NavigationBarItem(
                                 icon = { Icon(Icons.Default.ShoppingCart, contentDescription = strings.merch) },
                                 label = { Text(strings.merch) },
-                                selected = false,
-                                onClick = { 
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shop.hololivepro.com/"))
-                                    context.startActivity(intent)
-                                },
+                                selected = selectedTab == 3,
+                                onClick = { selectedTab = 3 },
                                 colors = NavigationBarItemDefaults.colors(indicatorColor = BackgroundLightBlue, selectedIconColor = PrimaryBlue, selectedTextColor = PrimaryBlue)
                             )
                             NavigationBarItem(
@@ -156,6 +150,8 @@ fun MainScreen() {
                         when (selectedTab) {
                             0 -> HomeScreen()
                             1 -> ScheduleScreen(onNotificationClick = { showNotificationHistory = true })
+                            2 -> TalentProfileScreen()
+                            3 -> MerchStoreScreen()
                             4 -> SettingsScreen(
                                 onDarkModeToggle = { isDarkMode = it },
                                 onLanguageToggle = { appLanguage = it },
@@ -175,5 +171,3 @@ fun MainScreen() {
         }
     }
 }
-
-

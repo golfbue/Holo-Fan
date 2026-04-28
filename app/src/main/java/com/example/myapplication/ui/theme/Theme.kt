@@ -15,15 +15,15 @@ import com.example.myapplication.*
 
 private val DarkColorScheme = darkColorScheme(
     primary = PrimaryBlue,
-    secondary = TextMainBlue,
+    secondary = PrimaryLight,
     tertiary = LiveRed,
-    background = Color(0xFF121212),
-    surface = Color(0xFF1E1E1E),
-    onPrimary = Color.Black,
+    background = Color(0xFF0F172A), // Darker Navy for better contrast
+    surface = Color(0xFF1E293B),    // Slate color for cards
+    onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color.White,
-    onSurface = Color.White
+    onBackground = Color.White,       // Pure white for text
+    onSurface = Color.White           // Pure white for text on cards
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -43,7 +43,7 @@ private val LightColorScheme = lightColorScheme(
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Disabled by default for better custom theme control
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

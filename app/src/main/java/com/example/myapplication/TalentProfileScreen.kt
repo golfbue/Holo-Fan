@@ -34,49 +34,51 @@ import androidx.compose.ui.platform.LocalUriHandler
 
 
 @Composable
-fun TalentProfileScreen() {
+fun TalentProfileScreen(viewModel: TalentViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
     val uriHandler = LocalUriHandler.current
     
-    TalentListScreen(onTalentClick = { talent ->
-        // Construct the official Hololive profile URL
-        // Pattern: https://hololive.hololivepro.com/en/talents/{slug}/
-        val slug = talent.name.lowercase()
-            .replace(" ", "-")
-            .replace("+", "plus")
-            .replace("'", "")
-            .replace(".", "")
-        
-        val url = "https://hololive.hololivepro.com/en/talents/$slug/"
-        uriHandler.openUri(url)
-    })
+    when (val state = uiState) {
+        is TalentUiState.Loading -> {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(color = PrimaryBlue)
+            }
+        }
+        is TalentUiState.Error -> {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Error: ${state.message}", color = Color.Red)
+            }
+        }
+        is TalentUiState.Success -> {
+            TalentListScreen(talents = state.talents, onTalentClick = { talent ->
+                // Construct the official Hololive profile URL or YouTube link
+                val url = "https://www.youtube.com/channel/${talent.id}"
+                uriHandler.openUri(url)
+            })
+        }
+    }
 }
 
 @Composable
-fun TalentListScreen(onTalentClick: (Talent) -> Unit) {
-    val allTalents = TalentProvider.talents
+fun TalentListScreen(talents: List<HolodexChannel>, onTalentClick: (HolodexChannel) -> Unit) {
     val strings = LocalStrings.current
     val categories = listOf(
         "ALL", "Gen 0", "Gen 1", "Gen 2", "GAMERS", "Gen 3", "Gen 4", "Gen 5", "HoloX",
-        "Indonesia", "English", "Myth", "Promise", "Advent", "Justice", "ReGLOSS", "FLOW GLOW", "holoAN", "Alum", "Staff"
+        "Indonesia", "English", "ReGLOSS", "FLOW GLOW"
     )
     var selectedCategory by remember { mutableStateOf("ALL") }
     var searchQuery by remember { mutableStateOf("") }
 
-    val filteredTalents = remember(selectedCategory, searchQuery, allTalents) {
+    val filteredTalents = remember(selectedCategory, searchQuery, talents) {
         val categoryFiltered = if (selectedCategory == "ALL") {
-            allTalents
+            talents
         } else {
-            allTalents.filter { talent ->
+            talents.filter { talent ->
+                val suborg = talent.suborg ?: ""
                 when (selectedCategory) {
-                    "Indonesia" -> talent.generation.contains("ID", ignoreCase = true)
-                    "English" -> talent.generation.contains("EN", ignoreCase = true)
-                    "Myth" -> talent.generation.contains("Myth", ignoreCase = true)
-                    "Promise" -> talent.generation.contains("Promise", ignoreCase = true) || talent.generation.contains("Project HOPE", ignoreCase = true)
-                    "Advent" -> talent.generation.contains("Advent", ignoreCase = true)
-                    "Justice" -> talent.generation.contains("Justice", ignoreCase = true)
-                    "Alum" -> talent.status == "Alum"
-                    "Staff" -> talent.status == "Affiliate" || talent.generation.contains("Staff")
-                    else -> talent.generation.contains(selectedCategory, ignoreCase = true)
+                    "Indonesia" -> suborg.contains("ID", ignoreCase = true)
+                    "English" -> suborg.contains("EN", ignoreCase = true)
+                    else -> suborg.contains(selectedCategory, ignoreCase = true)
                 }
             }
         }
@@ -84,7 +86,10 @@ fun TalentListScreen(onTalentClick: (Talent) -> Unit) {
         if (searchQuery.isBlank()) {
             categoryFiltered
         } else {
-            categoryFiltered.filter { it.name.contains(searchQuery, ignoreCase = true) }
+            categoryFiltered.filter { 
+                it.name.contains(searchQuery, ignoreCase = true) || 
+                it.english_name?.contains(searchQuery, ignoreCase = true) == true
+            }
         }
     }
 
@@ -173,7 +178,7 @@ fun FilterChip(label: String, isSelected: Boolean, onClick: () -> Unit) {
 }
 
 @Composable
-fun TalentListItem(talent: Talent, onClick: () -> Unit) {
+fun TalentListItem(talent: HolodexChannel, onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -186,63 +191,32 @@ fun TalentListItem(talent: Talent, onClick: () -> Unit) {
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Circle Avatar with Oshi Mark instead of Image
-            Box(
+            // Channel Photo
+            AsyncImage(
+                model = talent.photo,
+                contentDescription = null,
                 modifier = Modifier
                     .size(64.dp)
-                    .clip(CircleShape)
-                    .background(PrimaryBlue.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = talent.oshiMark,
-                    fontSize = 32.sp
-                )
-            }
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
 
             Spacer(modifier = Modifier.width(16.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = talent.name,
+                    text = talent.english_name ?: talent.name,
                     fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 18.sp
                 )
                 Text(
-                    text = talent.generation,
+                    text = talent.suborg ?: talent.org ?: "",
                     fontSize = 12.sp,
                     color = PrimaryBlue,
                     fontWeight = FontWeight.Medium
                 )
             }
-
-            Column(horizontalAlignment = Alignment.End) {
-                StatusBadge(status = talent.status)
-            }
         }
-    }
-}
-
-@Composable
-fun StatusBadge(status: String) {
-    val color = when (status) {
-        "Active" -> Color(0xFF4CAF50)
-        "Alum" -> Color(0xFF9E9E9E)
-        "Affiliate" -> Color(0xFF2196F3)
-        else -> Color.Gray
-    }
-    Surface(
-        color = color,
-        shape = RoundedCornerShape(4.dp),
-        modifier = Modifier.padding(start = 8.dp)
-    ) {
-        Text(
-            text = status,
-            color = Color.White,
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-        )
     }
 }

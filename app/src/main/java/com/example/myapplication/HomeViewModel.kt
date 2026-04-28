@@ -10,7 +10,8 @@ sealed class HomeUiState {
     object Loading : HomeUiState()
     data class Success(
         val liveStreams: List<HolodexVideo>,
-        val upcomingStreams: List<HolodexVideo>
+        val upcomingStreams: List<HolodexVideo>,
+        val latestVideos: List<HolodexVideo> = emptyList()
     ) : HomeUiState()
     data class Error(val message: String) : HomeUiState()
 }
@@ -31,7 +32,14 @@ class HomeViewModel : ViewModel() {
             try {
                 val live = api.getLiveStreams()
                 val upcoming = api.getVideos(status = "upcoming", limit = 10)
-                _uiState.value = HomeUiState.Success(live, upcoming)
+                val allLatest = api.getVideos(status = "past", limit = 50) 
+                
+                // Strict filter for "HoloAn" related channels only
+                val filteredLatest = allLatest.filter { 
+                    it.channel.name.contains("HoloAn", ignoreCase = true)
+                }.take(5)
+                
+                _uiState.value = HomeUiState.Success(live, upcoming, filteredLatest)
             } catch (e: Exception) {
                 _uiState.value = HomeUiState.Error(e.message ?: "Unknown error")
             }

@@ -19,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import android.content.Context
+import android.content.Intent
 import androidx.compose.ui.platform.LocalContext
+import coil.compose.AsyncImage
 
 @Composable
 fun SettingsScreen(
@@ -29,7 +31,7 @@ fun SettingsScreen(
 ) {
     val context = LocalContext.current
     val strings = LocalStrings.current
-    val sharedPrefs = remember { context.getSharedPreferences("holo_fan_prefs", Context.MODE_PRIVATE) }
+    val sharedPrefs = remember { context.getSharedPreferences("holofriend_prefs", Context.MODE_PRIVATE) }
     
     var notificationEnabled by remember { 
         mutableStateOf(sharedPrefs.getBoolean("notification_enabled", true)) 
@@ -58,7 +60,7 @@ fun SettingsScreen(
     if (showLanguageDialog) {
         AlertDialog(
             onDismissRequest = { showLanguageDialog = false },
-            title = { Text(strings.selectLanguage) },
+            title = { Text(strings.selectLanguage, color = MaterialTheme.colorScheme.onSurface) },
             text = {
                 Column {
                     listOf("ภาษาไทย", "English").forEach { lang ->
@@ -76,7 +78,7 @@ fun SettingsScreen(
                         ) {
                             RadioButton(selected = selectedLanguage == lang, onClick = null)
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text(lang)
+                            Text(lang, color = MaterialTheme.colorScheme.onSurface)
                         }
                     }
                 }
@@ -87,35 +89,49 @@ fun SettingsScreen(
         )
     }
 
+    var showAboutDialog by remember { mutableStateOf(false) }
+
+    if (showAboutDialog) {
+        AlertDialog(
+            onDismissRequest = { showAboutDialog = false },
+            title = { Text(strings.aboutApp, color = MaterialTheme.colorScheme.onSurface) },
+            text = {
+                Column {
+                    Text("HoloFriend Companion", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                    Text("v1.2.0 Premium", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        if (LocalStrings.current == ThaiStrings) 
+                            "แอปพลิเคชันสำหรับแฟนคลับ Hololive เพื่อติดตามการสตรีม ตารางเวลา และข้อมูลเมมเบอร์ โดยใช้ Holodex API" 
+                        else 
+                            "A fan-made application for tracking Hololive live streams, schedule, and talent information using Holodex API.",
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        if (LocalStrings.current == ThaiStrings) "สร้างขึ้นเพื่อแฟนๆ Hololive ทุกคน" else "Created for all Hololive Fans.", 
+                        color = MaterialTheme.colorScheme.primary, 
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showAboutDialog = false }) { Text("OK") }
+            }
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp)
+            .padding(top = 24.dp)
     ) {
-        // Header / Profile Section
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Surface(
-                modifier = Modifier.size(80.dp),
-                shape = CircleShape,
-                color = PrimaryBlue.copy(alpha = 0.1f)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Text("💙", fontSize = 40.sp)
-                }
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Text("Holo-Fan Companion", fontWeight = FontWeight.ExtraBold, fontSize = 20.sp, color = TextDark)
-            Text("v1.2.0 Premium", color = TextLight, fontSize = 12.sp)
-        }
-
         Text(
             "Preferences", 
             fontWeight = FontWeight.Bold, 
-            color = TextLight, 
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f), 
             fontSize = 13.sp,
             modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
         )
@@ -134,11 +150,11 @@ fun SettingsScreen(
                         Switch(
                             checked = notificationEnabled,
                             onCheckedChange = { updateNotification(it) },
-                            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = PrimaryBlue)
+                            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = MaterialTheme.colorScheme.primary)
                         )
                     }
                 )
-                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = Color.Gray.copy(alpha = 0.1f))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
                 SettingItem(
                     icon = Icons.Default.Settings,
                     title = strings.darkMode,
@@ -146,11 +162,11 @@ fun SettingsScreen(
                         Switch(
                             checked = darkModeEnabled,
                             onCheckedChange = { updateDarkMode(it) },
-                            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = PrimaryBlue)
+                            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = MaterialTheme.colorScheme.primary)
                         )
                     }
                 )
-                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = Color.Gray.copy(alpha = 0.1f))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
                 SettingItem(
                     icon = Icons.Default.Edit,
                     title = strings.language,
@@ -165,7 +181,7 @@ fun SettingsScreen(
         Text(
             "Support", 
             fontWeight = FontWeight.Bold, 
-            color = TextLight, 
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f), 
             fontSize = 13.sp,
             modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
         )
@@ -180,13 +196,21 @@ fun SettingsScreen(
                 SettingItem(
                     icon = Icons.Default.Info,
                     title = strings.aboutApp,
-                    onClick = { /* TODO */ }
+                    onClick = { showAboutDialog = true }
                 )
-                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = Color.Gray.copy(alpha = 0.1f))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
                 SettingItem(
                     icon = Icons.Default.Share,
                     title = "Share with Friends",
-                    onClick = { /* TODO */ }
+                    onClick = { 
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT, "Check out HoloFriend Companion! The best app for Hololive fans: https://github.com/golfbue/HoloFriend")
+                            type = "text/plain"
+                        }
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+                        context.startActivity(shareIntent)
+                    }
                 )
             }
         }
@@ -211,23 +235,23 @@ fun SettingItem(
         Surface(
             modifier = Modifier.size(40.dp),
             shape = RoundedCornerShape(12.dp),
-            color = PrimaryBlue.copy(alpha = 0.05f)
+            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.05f)
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Icon(icon, contentDescription = null, tint = PrimaryBlue, modifier = Modifier.size(20.dp))
+                Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
             }
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(title, fontWeight = FontWeight.SemiBold, color = TextDark, fontSize = 15.sp)
+            Text(title, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp)
             if (subtitle != null) {
-                Text(subtitle, color = TextLight, fontSize = 12.sp)
+                Text(subtitle, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), fontSize = 12.sp)
             }
         }
         if (trailing != null) {
             trailing()
         } else if (onClick != null) {
-            Icon(Icons.Default.ArrowForward, contentDescription = null, tint = TextLight.copy(alpha = 0.5f))
+            Icon(Icons.Default.ArrowForward, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
         }
     }
 }

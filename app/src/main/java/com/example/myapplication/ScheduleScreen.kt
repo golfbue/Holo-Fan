@@ -76,7 +76,7 @@ fun ScheduleScreen(
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            placeholder = { Text("Search streams or talents...", fontSize = 14.sp) },
+            placeholder = { Text(strings.searchStreams, fontSize = 14.sp) },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = PrimaryBlue) },
             trailingIcon = {
                 if (searchQuery.isNotEmpty()) {
@@ -121,7 +121,7 @@ fun ScheduleScreen(
                     ) {
                         Text(
                             title, 
-                            color = if (isSelected) Color.White else TextDark, 
+                            color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface, 
                             fontWeight = FontWeight.ExtraBold, 
                             fontSize = 13.sp
                         )
@@ -140,10 +140,10 @@ fun ScheduleScreen(
         if (showTopicDialog) {
             AlertDialog(
                 onDismissRequest = { showTopicDialog = false },
-                title = { Text("คัดกรองตามหัวข้อ") },
+                title = { Text(strings.filterTopic) },
                 text = {
                     Column {
-                        listOf("ทั้งหมด" to null).plus(topics.map { it to it }).forEach { (label, topic) ->
+                        listOf(strings.all to null).plus(topics.map { it to it }).forEach { (label, topic) ->
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -156,13 +156,13 @@ fun ScheduleScreen(
                             ) {
                                 RadioButton(selected = selectedTopic == topic, onClick = null)
                                 Spacer(modifier = Modifier.width(8.dp))
-                                Text(label)
+                                Text(label, color = MaterialTheme.colorScheme.onSurface)
                             }
                         }
                     }
                 },
                 confirmButton = {
-                    TextButton(onClick = { showTopicDialog = false }) { Text("ปิด") }
+                    TextButton(onClick = { showTopicDialog = false }) { Text(strings.close) }
                 }
             )
         }
@@ -335,7 +335,7 @@ fun ScheduleScreen(
                             if (filteredLive.isEmpty() && filteredToday.isEmpty()) {
                                 item {
                                     Box(modifier = Modifier.fillParentMaxSize(), contentAlignment = Alignment.Center) {
-                                        Text(strings.noScheduleToday, color = TextLight)
+                                        Text(strings.noScheduleToday, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
                                     }
                                 }
                             }
@@ -372,7 +372,7 @@ fun ScheduleScreen(
                             } else {
                                 item {
                                     Box(modifier = Modifier.fillParentMaxSize(), contentAlignment = Alignment.Center) {
-                                        Text(strings.noScheduleSoon, color = TextLight)
+                                        Text(strings.noScheduleSoon, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
                                     }
                                 }
                             }
@@ -409,7 +409,7 @@ fun ScheduleScreen(
                             } else {
                                 item {
                                     Box(modifier = Modifier.fillParentMaxSize(), contentAlignment = Alignment.Center) {
-                                        Text(strings.noScheduleArchive, color = TextLight)
+                                        Text(strings.noScheduleArchive, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f))
                                     }
                                 }
                             }
@@ -526,7 +526,7 @@ fun ScheduleItemCard(
                 
                 Spacer(modifier = Modifier.height(8.dp))
                 
-                Text(title, fontWeight = FontWeight.Bold, color = TextDark, fontSize = 15.sp, maxLines = 2, lineHeight = 20.sp)
+                Text(title, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, maxLines = 2, lineHeight = 20.sp)
                 
                 Spacer(modifier = Modifier.height(12.dp))
 

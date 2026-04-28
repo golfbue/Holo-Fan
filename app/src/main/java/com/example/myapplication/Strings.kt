@@ -38,7 +38,14 @@ data class AppStrings(
     val noScheduleArchive: String,
     val memberLive: String,
     val liveNotification: String,
-    val aboutApp: String
+    val aboutApp: String,
+    val searchStreams: String,
+    val filterTopic: String,
+    val close: String,
+    val openPeriod: String,
+    val until: String,
+    val hello: String,
+    val discover: String
 )
 
 val ThaiStrings = AppStrings(
@@ -77,7 +84,14 @@ val ThaiStrings = AppStrings(
     noScheduleArchive = "ไม่พบรายการที่จบไปแล้ว",
     memberLive = "เมมเบอร์ที่คุณติดตามกำลังไลฟ์อยู่!",
     liveNotification = "แจ้งเตือนเมื่อเริ่มไลฟ์",
-    aboutApp = "เกี่ยวกับแอป"
+    aboutApp = "เกี่ยวกับแอป",
+    searchStreams = "ค้นหาไลฟ์หรือเมมเบอร์...",
+    filterTopic = "คัดกรองตามหัวข้อ",
+    close = "ปิด",
+    openPeriod = "เปิดรับ",
+    until = "ถึง",
+    hello = "สวัสดี HoloFriend! 👋",
+    discover = "ค้นหาสตรีมที่กำลังไลฟ์"
 )
 
 val EnglishStrings = AppStrings(
@@ -116,7 +130,14 @@ val EnglishStrings = AppStrings(
     noScheduleArchive = "No archives found",
     memberLive = "A member you follow is live right now!",
     liveNotification = "Live Notifications",
-    aboutApp = "About App"
+    aboutApp = "About App",
+    searchStreams = "Search streams or talents...",
+    filterTopic = "Filter by Topic",
+    close = "Close",
+    openPeriod = "Open",
+    until = "Until",
+    hello = "Hello, HoloFriend! 👋",
+    discover = "Discover what's Live"
 )
 
 val LocalStrings = compositionLocalOf { ThaiStrings }
