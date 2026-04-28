@@ -30,19 +30,47 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.value = HomeUiState.Loading
             try {
-                val live = api.getLiveStreams()
-                val upcoming = api.getVideos(status = "upcoming", limit = 10)
-                val allLatest = api.getVideos(status = "past", limit = 50) 
+                // Fetch from Hololive
+                val liveHolo = api.getLiveStreams(org = "Hololive")
+                val upcomingHolo = api.getVideos(status = "upcoming", org = "Hololive", limit = 20)
                 
-                // Strict filter for "HoloAn" related channels only
+                // Fetch from DEV_IS (ReGLOSS & FLOW GLOW)
+                val liveDevIs = api.getLiveStreams(org = "DEV_IS")
+                val upcomingDevIs = api.getVideos(status = "upcoming", org = "DEV_IS", limit = 10)
+                
+                // Combine and filter
+                val allLive = (liveHolo + liveDevIs).filter { isOfficialHololive(it) }
+                val allUpcoming = (upcomingHolo + upcomingDevIs).filter { isOfficialHololive(it) }
+                
+                val allLatest = api.getVideos(status = "past", org = "Hololive", limit = 50)
+                
+                // Filter specifically for "HoloAn" and official news channels
                 val filteredLatest = allLatest.filter { 
-                    it.channel.name.contains("HoloAn", ignoreCase = true)
+                    (it.channel.name.contains("HoloAn", ignoreCase = true) || 
+                     it.channel.name.contains("hololive", ignoreCase = true)) &&
+                    isOfficialHololive(it)
                 }.take(5)
                 
-                _uiState.value = HomeUiState.Success(live, upcoming, filteredLatest)
+                _uiState.value = HomeUiState.Success(allLive, allUpcoming.take(20), filteredLatest)
             } catch (e: Exception) {
                 _uiState.value = HomeUiState.Error(e.message ?: "Unknown error")
             }
         }
+    }
+
+    private fun isOfficialHololive(video: HolodexVideo): Boolean {
+        // Double check: Must be Hololive or DEV_IS organization
+        val org = video.channel.org?.lowercase()
+        val name = video.channel.name.lowercase()
+        
+        // Ensure it's part of official Hololive groups and NOT a clipper
+        // Include 'dev_is' for ReGLOSS and FLOW GLOW members
+        val isOfficialOrg = org == "hololive" || org == "dev_is"
+        
+        return isOfficialOrg && 
+               !name.contains("clipper") && 
+               !name.contains("切り抜き") &&
+               !name.contains("fan") &&
+               !name.contains("translation")
     }
 }

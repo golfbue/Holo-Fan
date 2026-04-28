@@ -35,26 +35,43 @@ class ScheduleViewModel : ViewModel() {
 
     fun refreshSchedule() {
         viewModelScope.launch {
-            // Only show loading if we don't have data yet
             if (_uiState.value !is ScheduleUiState.Success) {
                 _uiState.value = ScheduleUiState.Loading
             }
             try {
-                // Fetch more items and ensure Hololive org
-                val live = api.getLiveStreams(org = "Hololive")
-                val upcoming = api.getVideos(org = "Hololive", status = "upcoming", limit = 50)
-                val past = api.getVideos(org = "Hololive", status = "past", limit = 50)
+                // Fetch from Hololive
+                val liveHolo = api.getLiveStreams(org = "Hololive")
+                val upcomingHolo = api.getVideos(org = "Hololive", status = "upcoming", limit = 50)
+                val pastHolo = api.getVideos(org = "Hololive", status = "past", limit = 30)
                 
-                // Final client-side safeguard to ensure only Hololive content (if API returns mixed)
-                // Note: We'll assume the API's 'org' filter is mostly correct, 
-                // but we can add more logic here if needed.
-                _uiState.value = ScheduleUiState.Success(live, upcoming, past)
+                // Fetch from DEV_IS
+                val liveDevIs = api.getLiveStreams(org = "DEV_IS")
+                val upcomingDevIs = api.getVideos(org = "DEV_IS", status = "upcoming", limit = 20)
+                val pastDevIs = api.getVideos(org = "DEV_IS", status = "past", limit = 10)
+                
+                // Combine and apply strict filter
+                val allLive = (liveHolo + liveDevIs).filter { isOfficialHololive(it) }
+                val allUpcoming = (upcomingHolo + upcomingDevIs).filter { isOfficialHololive(it) }
+                val allPast = (pastHolo + pastDevIs).filter { isOfficialHololive(it) }
+                
+                _uiState.value = ScheduleUiState.Success(allLive, allUpcoming, allPast)
             } catch (e: Exception) {
-                // If we already have data, don't overwrite with error, just log it
                 if (_uiState.value !is ScheduleUiState.Success) {
                     _uiState.value = ScheduleUiState.Error(e.message ?: "Unknown error")
                 }
             }
         }
+    }
+
+    private fun isOfficialHololive(video: HolodexVideo): Boolean {
+        val org = video.channel.org?.lowercase()
+        val name = video.channel.name.lowercase()
+        val isOfficialOrg = org == "hololive" || org == "dev_is"
+        
+        return isOfficialOrg && 
+               !name.contains("clipper") && 
+               !name.contains("切り抜き") &&
+               !name.contains("fan") &&
+               !name.contains("translation")
     }
 }

@@ -1,51 +1,34 @@
-# Holo-Fan 
+# HoloFriend 💙
 
-แอปพลิเคชันสำหรับแฟนคลับ Hololive ชาวไทย เพื่อให้สามารถติดตามข่าวสารและตารางไลฟ์ของไอดอลคนโปรดได้ง่ายขึ้นในที่เดียว!
+**HoloFriend** คือแอปพลิเคชันสำหรับแฟนคลับ Hololive ที่สร้างขึ้นด้วย Jetpack Compose โดยเน้นความสวยงาม ทันสมัย และ **"ความถูกต้องของเนื้อหา"** เป็นสำคัญ เพื่อให้คุณไม่พลาดทุกความเคลื่อนไหวจากสมาชิก Hololive ตัวจริง
 
-##  เกี่ยวกับโปรเจกต์ (Overview)
-**Holo-Fan** ถูกสร้างขึ้นจากความต้องการที่จะช่วยเหลือแฟนคลับชาวไทยที่อาจจะมีข้อจำกัดด้านภาษา (ญี่ปุ่น/อังกฤษ) ให้สามารถเข้าถึงข้อมูลและตารางเวลาของเมมเบอร์ Hololive ได้อย่างสะดวกและรวดเร็ว
+## ✨ ฟีเจอร์หลัก (Key Features)
 
-##  คุณสมบัติหลัก (Key Features)
--  **ตารางไลฟ์ (Live Schedule)**: ติดตามตารางการไลฟ์สดแบบ Real-time โดยดึงข้อมูลจาก Holodex API
--  **การแจ้งเตือน (Notifications)**: แจ้งเตือนทันทีเมื่อเมมเบอร์ที่ติดตามเริ่มไลฟ์ เพื่อไม่ให้คุณพลาดทุกโมเมนต์สำคัญ
--  **ข้อมูลเมมเบอร์ (Talent Profiles)**: รวบรวมข้อมูลรายละเอียดของเมมเบอร์แต่ละคน (อ้างอิงจากเว็บไซต์หลัก)
--  **ร้านค้าสินค้า (Merch Store)**: เข้าถึงหน้าจำหน่ายสินค้า Official ของ Hololive ได้โดยตรง
--  **โหมดมืด (Dark Mode)**: รองรับการปรับเปลี่ยนธีมตามความชอบ
--  **รองรับสองภาษา**: สามารถเลือกใช้งานได้ทั้งภาษาไทยและภาษาอังกฤษ
+- **Official Content Only**: ระบบคัดกรองอัจฉริยะที่คัดเลือกเฉพาะเนื้อหาจากสมาชิก Hololive และ DEV_IS (ReGLOSS, FLOW GLOW) ตัวจริงเท่านั้น โดยทำการกรอง Clipper และช่องแฟนคลับออก 100%
+- **Live & Archive Streams**: ติดตามไลฟ์ที่กำลังฉายอยู่และไลฟ์ย้อนหลังได้ทันทีจากหน้า Home
+- **Complete Schedule**: ตารางการไลฟ์ล่วงหน้าแบบละเอียด แยกสัดส่วนชัดเจนระหว่างไลฟ์สดและไลฟ์ที่จบแล้ว
+- **Talent Directory**: รายชื่อเมมเบอร์ทุกคนพร้อมระบบคัดกรองตามรุ่น (Generation) ที่แม่นยำ พร้อมป้ายระบุรุ่น (Gen Tags) บนการ์ดสมาชิก
+- **Official Shop Integration**: เข้าถึงร้านค้าทางการ (Hololive Official Shop) ได้อย่างรวดเร็วผ่านหน้า Merch Store
+- **Premium Design**: อินเตอร์เฟซแบบ Dark Mode ที่ดูพรีเมียม พร้อมไอคอนแบบ Vector ที่คมชัดในทุกความละเอียด
 
-##  เทคโนโลยีที่ใช้ (Tech Stack)
+## 🛠️ เทคโนโลยีที่ใช้ (Tech Stack)
+
 - **Language**: Kotlin
-- **UI Framework**: Jetpack Compose (Modern Android UI)
-- **Networking**: Retrofit & Gson (สำหรับดึงข้อมูลจาก API)
-- **Image Loading**: Coil (สำหรับแสดงรูปภาพเมมเบอร์)
-- **Background Task**: WorkManager (สำหรับการตรวจสอบสถานะไลฟ์และแจ้งเตือนในเบื้องหลัง)
-- **API**: Holodex API
+- **UI Framework**: Jetpack Compose
+- **Network**: Retrofit & OkHttp
+- **Image Loading**: Coil
+- **Data Source**: Holodex API (v2)
+- **Architecture**: MVVM (Model-View-ViewModel)
 
-##  เริ่มต้นใช้งาน (Getting Started)
+## 🎨 การออกแบบ (Design Identity)
 
-###  สิ่งที่ต้องเตรียม (Prerequisites)
-- Android Studio Jellyfish (หรือเวอร์ชันใหม่กว่า)
-- JDK 11
-- Holodex API Key ([ขอได้ที่นี่](https://holodex.net/))
+แอปพลิเคชันเลือกใช้โทนสี **Primary Blue (#2196F3)** ซึ่งเป็นสีเอกลักษณ์ของ Hololive ผสมผสานกับดีไซน์แบบ Glassmorphism และการใช้ขอบมน (Rounded Corners) เพื่อให้ความรู้สึกที่เป็นมิตรและทันสมัย
 
-###  การติดตั้ง (Installation)
-1. Clone โปรเจกต์นี้ลงในเครื่องของคุณ:
-   ```bash
-   git clone https://github.com/golfbue/Holo-Fan.git
-   ```
-2. เปิดโปรเจกต์ด้วย Android Studio
-3. สร้างไฟล์ `local.properties` ในโฟลเดอร์ root (ถ้ายังไม่มี) และเพิ่ม API Key ของคุณ:
-   ```properties
-   HOLODEX_API_KEY=your_api_key_here
-   ```
-4. กด **Sync Project with Gradle Files**
-5. กด **Run** เพื่อเริ่มใช้งานบน Emulator หรืออุปกรณ์จริง
+## 🚀 เริ่มต้นใช้งาน (Getting Started)
 
-##  ธีมและการออกแบบ (Design System)
-ตัวแอปออกแบบโดยใช้โทนสี **Blue-White** ซึ่งเป็นสีเอกลักษณ์ของ Hololive ให้ความรู้สึกสะอาดตา ทันสมัย และพรีเมียม
-
-##  การมีส่วนร่วม (Contribution)
-หากคุณมีไอเดียในการพัฒนาหรือพบข้อผิดพลาด สามารถเปิด **Issue** หรือส่ง **Pull Request** เข้ามาได้เลยครับ!
+1. Clone โปรเจกต์นี้ลงในเครื่อง
+2. ตรวจสอบให้มั่นใจว่ามี `HOLODEX_API_KEY` ใน `BuildConfig`
+3. Build และรันแอปผ่าน Android Studio
 
 ---
-*Created with for Hololive Fans.*
+*Created with ❤️ by Antigravity AI & The Hololive Fan Community*

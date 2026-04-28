@@ -1,6 +1,10 @@
 package com.example.myapplication
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.dp
+
+val RoundedCornerSize = RoundedCornerShape(16.dp)
 
 val PrimaryBlue = Color(0xFF2196F3)
 val PrimaryLight = Color(0xFF64B5F6)

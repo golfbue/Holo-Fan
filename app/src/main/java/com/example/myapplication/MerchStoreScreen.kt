@@ -1,66 +1,88 @@
 package com.example.myapplication
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 @Composable
 fun MerchStoreScreen() {
-    val strings = LocalStrings.current
-    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
-        // Header
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.PlayArrow, contentDescription = "Logo", tint = PrimaryBlue)
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(strings.merch, fontWeight = FontWeight.ExtraBold, color = PrimaryBlue, fontSize = 20.sp)
-            }
-            Icon(Icons.Default.Notifications, contentDescription = "Bell", tint = PrimaryBlue)
-        }
-
-        Text(strings.merch, fontWeight = FontWeight.Bold, color = PrimaryBlue, fontSize = 18.sp, modifier = Modifier.padding(horizontal = 16.dp))
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // List
-        LazyColumn(contentPadding = PaddingValues(16.dp)) {
-            item { MerchItemCard("Aqua Birthday Merch", "1 Mar 2022", "15 Jun 2022") }
-            item { MerchItemCard("Hololive Summer Goods", "25 Jun 2022", "Ready to ship") }
-        }
-    }
-}
-
-@Composable
-fun MerchItemCard(title: String, openDate: String, endDate: String) {
-    val strings = LocalStrings.current
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        modifier = Modifier.padding(bottom = 16.dp).fillMaxWidth()
+    val context = LocalContext.current
+    
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Box(modifier = Modifier.height(120.dp).fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color.LightGray))
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(title, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text("${strings.openPeriod}: $openDate", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
-            Text("${strings.until}: $endDate", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+        // Icon Section
+        Surface(
+            modifier = Modifier.size(120.dp),
+            shape = CircleShape,
+            color = PrimaryBlue.copy(alpha = 0.1f)
+        ) {
+            Icon(
+                Icons.Default.ShoppingCart,
+                contentDescription = null,
+                modifier = Modifier.padding(32.dp).fillMaxSize(),
+                tint = PrimaryBlue
+            )
+        }
+        
+        Spacer(modifier = Modifier.height(32.dp))
+        
+        Text(
+            text = "Official Hololive Shop",
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.ExtraBold,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        Text(
+            text = "Check out official merchandise and special collaboration items from your favorite talents!",
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(horizontal = 32.dp)
+        )
+        
+        Spacer(modifier = Modifier.height(48.dp))
+        
+        Button(
+            onClick = {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shop.hololivepro.com/"))
+                context.startActivity(intent)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(horizontal = 16.dp),
+            shape = RoundedCornerSize,
+            colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue)
+        ) {
+            Icon(Icons.Default.ExitToApp, contentDescription = null)
+            Spacer(modifier = Modifier.width(12.dp))
+            Text(
+                "GO TO OFFICIAL SHOP", 
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 16.sp
+            )
         }
     }
 }
