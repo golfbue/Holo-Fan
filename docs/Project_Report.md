@@ -1,4 +1,4 @@
-# 📄 Project Report & Wireframes: HoloFriend 💙
+# Project Report & Wireframes: HoloFriend 
 
 รายงานสรุปโครงสร้างและระบบการทำงานของแอปพลิเคชัน **HoloFriend** เพื่อใช้เป็นแนวทางในการพัฒนาและออกแบบประสบการณ์ผู้ใช้ (UX/UI)
 
